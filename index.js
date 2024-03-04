@@ -16,6 +16,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.send('Bom dia');
+});
+
+var carroRota = require ('./rotas/carroRota');
+app.use('/', carroRota);
+
 const PORT='3000';
 const HOST='127.0.0.1';
 
