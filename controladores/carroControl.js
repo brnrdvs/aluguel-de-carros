@@ -13,10 +13,10 @@ module.exports = class carroControl {
             observacao: req.body.observacao
         });
 
-        carro.save(carro).then(data => {
+        novoCarro.save(novoCarro).then(data => {
             res.send(data);
         }).catch(error => {
-            res.status(500).send({ mensagem: error.message || `Erro ao inserir informações do carro ${carro}` });
+            res.status(500).send({ mensagem: error.message || `Erro ao inserir informações do carro ${novoCarro}` });
         })
     }
     

@@ -23,6 +23,12 @@ app.get('/', (req, res) => {
 var carroRota = require ('./rotas/carroRota');
 app.use('/', carroRota);
 
+var esportRota = require ('./rotas/esportRota');
+app.use('/', esportRota);
+
+var utilRota = require ('./rotas/utilRota');
+app.use('/', utilRota);
+
 const PORT='3000';
 const HOST='127.0.0.1';
 
