@@ -29,6 +29,21 @@ app.use('/', esportRota);
 var utilRota = require ('./rotas/utilRota');
 app.use('/', utilRota);
 
+var pessoaRota = require ('./rotas/pessoaRota');
+app.use('/', pessoaRota);
+
+var promocaoRota = require ('./rotas/promocaoRota');
+app.use('/', promocaoRota);
+
+var funcionarioRota = require ('./rotas/funcionarioRota');
+app.use('/', funcionarioRota);
+
+var clienteRota = require ('./rotas/clienteRota');
+app.use('/', clienteRota);
+
+var reservaRota = require ('./rotas/reservaRota');
+app.use('/', reservaRota);
+
 const PORT='3000';
 const HOST='127.0.0.1';
 
