@@ -20,4 +20,17 @@ module.exports = class carroControl {
         })
     }
     
+    static async buscar(req, res) {
+        carro.findOne({placa: req.body.placa})
+        .then(data => {
+            if (!data) {
+                return res.status(404).json({'mensagem':`Reserva não encontrada com a placa ${req.body.placa}`});
+             }
+             
+            res.send(data);
+        }).catch(error => {
+            res.status(500).send({ mensagem: error.message || `Erro ao buscar informações do carro pela placa ${placa}` });
+        })
+    }
+    
 }
