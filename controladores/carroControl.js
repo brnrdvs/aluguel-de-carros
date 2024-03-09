@@ -22,14 +22,21 @@ module.exports = class carroControl {
     
     static async buscar(req, res) {
         carro.findOne({placa: req.body.placa})
+        .then(c).catch(error => {
+            res.status(500).send({ mensagem: error.message || `Erro ao buscar informações do carro pela placa ${placa}` });
+        })
+    }
+
+    static async deletar(req,res) {
+        const {id} = req.query;
+
+        carro.findByIdAndDelete(id, {useFindAndModify: false})
         .then(data => {
             if (!data) {
-                return res.status(404).json({'mensagem':`Reserva não encontrada com a placa ${req.body.placa}`});
-             }
-             
-            res.send(data);
+                res.status(404).json({'mensagem':`Carro não encontrado com o ID ${id}`});
+             } else res.send({'mensagem':`Carro de ID ${id} removido com sucesso`})
         }).catch(error => {
-            res.status(500).send({ mensagem: error.message || `Erro ao buscar informações do carro pela placa ${placa}` });
+            res.status(500).send({mensagem: error.message || `Erro ao tentar remover carro de ID ${id}` })
         })
     }
     
