@@ -4,6 +4,7 @@ const router = express.Router();
 const promocaoControl = require('../controladores/promocaoControl');
 
 router.post('/promocao', promocaoControl.inserir);
-router.post('/enviar-promocao', promocaoControl.enviarPromocao);
+router.post('/promocao-enviar', promocaoControl.enviarPromocao);
+router.delete('/promocao-deletar', promocaoControl.deletar);
 
 module.exports = router;

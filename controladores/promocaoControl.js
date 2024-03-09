@@ -29,4 +29,16 @@ module.exports = class promocaoControl {
         res.json({'clientes': encontrarCliente, 'promocao': encontrarPromo});
     }
     
+    static async deletar(req, res) {
+        const {id} = req.query;
+
+        promocao.findByIdAndDelete(id, {useFindAndModify: false})
+        .then(data => {
+            if (!data) {
+                res.status(404).json({'mensagem':`Promoção não encontrada com o ID ${id}`});
+             } else res.send({'mensagem':`Promoção de ID ${id} removida com sucesso`})
+        }).catch(error => {
+            res.status(500).send({mensagem: error.message || `Erro ao tentar remover promoção de ID ${id}` })
+        })        
+    }
 }
