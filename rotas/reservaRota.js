@@ -3,7 +3,8 @@ const router = express.Router();
 
 const reservaControl = require('../controladores/reservaControl');
 
-router.post('/reserva', reservaControl.inserir);
-router.get('/reserva-cpf', reservaControl.buscar);
+router.post('/reserva-inserir', reservaControl.inserir);
+router.get('/reserva-buscar', reservaControl.buscar);
+router.put('/reserva-atualizar', reservaControl.atualizar);
 
 module.exports = router;

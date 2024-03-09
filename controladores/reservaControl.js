@@ -30,4 +30,19 @@ module.exports = class reservaControl {
             res.status(500).send({ mensagem: error.message || `Erro ao buscar informações da reserva pelo CPF ${cpfCliente}` });
         })
     }       
+
+    static async atualizar(req, res) {
+        const {id} = req.query;
+
+        reserva.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
+        .then(data => {
+            if (!data) {
+                res.status(404).json({'mensagem':`Reserva não encontrada com ID ${id}`})
+            }
+            else res.send({ 'mensagem': `Reserva ID ${id} atualizada com sucesso`})
+
+        }).catch(error =>{
+            res.status(500).send({ mensagem: error.message || `Erro ao atualizar informações da reserva ID ${id}` });            
+        })
+    }
 }
