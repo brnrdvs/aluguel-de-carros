@@ -22,7 +22,11 @@ module.exports = class carroControl {
     
     static async buscar(req, res) {
         carro.findOne({placa: req.body.placa})
-        .then(c).catch(error => {
+        .then(data => {            
+            if (!data) {
+                res.status(404).json({'mensagem':`Carro não encontrado com a placa ${placa}`});
+             } else res.send(data);
+        }).catch(error => {
             res.status(500).send({ mensagem: error.message || `Erro ao buscar informações do carro pela placa ${placa}` });
         })
     }
@@ -34,7 +38,7 @@ module.exports = class carroControl {
         .then(data => {
             if (!data) {
                 res.status(404).json({'mensagem':`Carro não encontrado com o ID ${id}`});
-             } else res.send({'mensagem':`Carro de ID ${id} removido com sucesso`})
+             } else res.send({'mensagem':`Carro de ID ${id} removido com sucesso`});
         }).catch(error => {
             res.status(500).send({mensagem: error.message || `Erro ao tentar remover carro de ID ${id}` })
         })

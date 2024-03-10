@@ -39,6 +39,6 @@ module.exports = class promocaoControl {
              } else res.send({'mensagem':`Promoção de ID ${id} removida com sucesso`})
         }).catch(error => {
             res.status(500).send({mensagem: error.message || `Erro ao tentar remover promoção de ID ${id}` })
-        })        
+        })
     }
 }
